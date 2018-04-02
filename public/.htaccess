@@ -1,7 +1,7 @@
 Options -Multiviews
 RewriteEngine On
 
-RewriteBase /labyrinthhero/public
+RewriteBase /labyrinth-hero/public
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
