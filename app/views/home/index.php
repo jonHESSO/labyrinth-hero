@@ -1,8 +1,19 @@
-Welcome to home/index
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="/labyrinth-hero/public/css/stylesheet.css"></link>
+</head>
+<body>
+	<?php
+		include '../app/views/header.php';
+	?>
+	<main>
+		<p>Arriverez-vous à trouver la sortie? Serez-vous un véritable aventurier? Personellement, je n'y crois pas... à vous de me prouver le contraire!</p>
+	</main>	
+	<?php
+		include '../app/views/footer.php';
+	?>
 
-Test these links :
-
-<a href="play">Play</a>
-<a href="leaderboard">Leaderboard</a>
-<a href="login">Login</a>
-<a href="home">Home</a>
+</body>
+</html>

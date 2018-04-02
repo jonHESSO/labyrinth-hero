@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body
+{
+	font-family: "Open Sans", "Arial";
+	margin: 0;
+}
+
+main
+{
+	margin: 1em;
+}
+
+/*Header*/
+
+/*--Banner*/
+
+div.top
+{
+	width: 100% ;
+	text-align: center;
+}
+
+div.left-holder
+{
+	float: left;
+	width: 100px;
+}
+
+div.banner
+{
+	display: inline-block;
+	margin:0 auto;
+	width: 300px;
+
+}
+
+div.login
+{
+	float: right;
+	width: 100px;
+}
+
+/*--Menu*/
+
+nav.menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+nav.menu a
+{
+	float: left;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+nav.menu a:hover
+{
+	background-color: #111;
+}
+
+/*Footer*/
+
+footer
+{
+	font-size: 12px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#container {
+	width:100%;
+	height: 88px;
+	text-align:center;
+	position: relative;
+}
+
+
+
+#center {
+	display: inline-block;
+	margin:0 auto;
+	width:350px;
+}
+
+#right {
+	width:250px;
+	position: absolute;
+	bottom: 1em;
+	right: 0;
+	text-align: right;
+	margin-right: 1em;
+}

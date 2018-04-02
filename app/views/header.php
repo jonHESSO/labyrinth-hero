@@ -1,0 +1,23 @@
+<header>
+	<div id="container">
+		<div id="center"><h1>Labyrinth Hero</h1></div>
+		<div id="right"><?php 
+		if ((isset($_SESSION['username']) != '')) 
+		{
+			echo("Hello "."{$_SESSION['username']}"."<br/>") ;
+			echo '<a href="/labyrinth-hero/public/login/logout">Logout</a>' ;
+		}
+		else
+		{
+			echo 'Not logged in<br/>' ;
+			echo '<a href="/labyrinth-hero/public/login">Login</a>' ;
+		}
+		?></div>
+	</div>
+	
+	<nav class = "menu">
+		<a href="/labyrinth-hero/public/home">Home</a>	
+		<a href="/labyrinth-hero/public/play">Play</a>
+		<a href="/labyrinth-hero/public/leaderboard">Leaderboard</a>		
+	</nav>
+</header>

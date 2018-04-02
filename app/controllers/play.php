@@ -4,11 +4,27 @@ class Play extends Controller
 {
 	public function index()
 	{
-		$this->view('play/index');
+
+		if ((isset($_SESSION['username']) != '')) 
+		{
+			$this->view('play/index');
+		}
+		else
+		{
+			header('location: /labyrinth-hero/public/login') ;
+		}
+
 	}
 
 	public function level($level = 0)
 	{
-		$this->view('play/level', ['level' => $level]) ;
+		if ((isset($_SESSION['username']) != '')) 
+		{
+			$this->view('play/level', ['level' => $level]) ;
+		}
+		else
+		{
+			header('location: /labyrinth-hero/public/login') ;
+		}
 	}
 }
