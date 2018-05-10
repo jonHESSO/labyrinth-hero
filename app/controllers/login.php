@@ -75,15 +75,17 @@ class Login extends Controller
 				// Define $username and $password
 				$username=$_POST['username'];
 				$password=$_POST['password'];
+				$country =$_POST['country'];
 
 				// To protect from MySQL injection
 				$username = stripslashes($username);
 				$password = stripslashes($password);
 				$username = mysqli_real_escape_string($db, $username);
 				$password = mysqli_real_escape_string($db, $password); 
+				$country = mysqli_real_escape_string($db, $country);
 
-				$query = "Insert into users (username, password)".
-				"values('$username','$password')";
+				$query = "Insert into users (username, password, country)".
+				"values('$username','$password','$country')";
 
 				$result = mysqli_query($db, $query);
 
