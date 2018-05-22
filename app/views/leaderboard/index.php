@@ -12,9 +12,9 @@
 		<p>Welcome to the leaderboard</p>
 		<table>
 			<tr>
-				<th>Rank</th>
-				<th>Username</th>
-				<th>Highscore</th>
+				<td>Rank</td>
+				<td>Username</td>
+				<td>Highscore</td>
 			</tr>
 			<?php
 			$position = 1 ; 

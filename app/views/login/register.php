@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Register</title>
@@ -9,6 +9,8 @@
 	include '../app/views/header.php';
 	?>
 	<main>
+<div class="flex-form">
+			<div>
 		<h1>Create an account</h1>
 		<div class="loginBox">
 			<form method="post" action="">
@@ -21,6 +23,8 @@
 			</form>
 			<div class="error"><?php echo $data['error'];?></div>
 		</div>
+</div>
+</div>
 	</main>	
 	<?php
 	include '../app/views/footer.php';

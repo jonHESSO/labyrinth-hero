@@ -1,16 +1,133 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+@font-face {
+  font-family: 'GoldenAge';
+  src: url("/labyrinth-hero/public/css/Golden Age.ttf") format('truetype');
+}
 
 body
 {
-	font-family: "Open Sans", "Arial";
+	font-family: "GoldenAge", "Arial";
 	margin: 0;
 }
 
+/*Home page*/
 main
 {
 	margin: 1em;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+.flex-container > div {
+	width: 400px;
+	text-align: center;
+	align-self: center;
+	font-size: 30px;
+}
+/*Leaderboard page*/
+table {
+	margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+    
+}
+
+
+ td {
+    text-align: left;
+    padding: 8px;
+    font-size: 20px;
+}
+
+tr:nth-child(1) > td {
+    text-align: left;
+    padding: 8px;
+    font-size: 30px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+tr:nth-child(1){
+    background-color: black;
+    color: white;
+}
+
+/*Level page*/
+button{
+	font-family: "GoldenAge", "Arial";
+	margin: 30px;
+	display: inline-block;
+	width: 180px;
+   	height: 180px;
+	font-size: 24px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background-color: #FF8C00;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+button:hover {background-color: #CD853F}
+
+button:active {
+  background-color: #CD853F;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+button[disabled=true]{
+	background-color: black;
+	color: grey;
+}
+/*register login*/
+input:-webkit-autofill {
+
+    -webkit-box-shadow: 0 0 0 2em white inset;
+}
+input[type=text], input[type=password]{
+	font-family: "GoldenAge", "Arial";
+	height: 20px;
+	border: 2px solid darkorange;
+	padding: 10px;
+}
+input[type=submit]{
+	font-family: "GoldenAge", "Arial";
+	display: inline-block;
+	width: 180px;
+   	height: 30px;
+	font-size: 18px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background-color: #FF8C00;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 5px #999;
+}
+input[type=submit]:hover {background-color: #CD853F}
+
+input[type=submit]:active {
+  background-color: #CD853F;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.flex-form {
+  display: flex;
+  justify-content: center;
+}
+.flex-form > div {
+	width: 800px;
+	text-align: center;
+	align-self: center;
+	font-size: 30px;
+}
 /*Header*/
 
 /*--Banner*/
@@ -80,8 +197,9 @@ footer
 }
 
 #container {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	width:100%;
-	height: 88px;
 	text-align:center;
 	position: relative;
 }
@@ -102,3 +220,6 @@ footer
 	text-align: right;
 	margin-right: 1em;
 }
+
+::-moz-selection { background: darkorange; color: white;}
+::selection { background: darkorange; color: white;}

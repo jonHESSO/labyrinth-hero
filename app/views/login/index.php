@@ -9,6 +9,8 @@
 	include '../app/views/header.php';
 	?>
 	<main>
+<div class="flex-form">
+			<div>
 		<h1>Please log in</h1>
 		<div class="loginBox">
 			<form method="post" action="">
@@ -20,8 +22,11 @@
 			</form>
 			<div class="error"><?php echo $data['error'];?></div>
 		</div>
+		<br/>
 		Don't have an account ?<br>
 		<a href="/labyrinth-hero/public/login/register">Register now</a>
+</div>
+</div>
 	</main>	
 	<?php
 	include '../app/views/footer.php';

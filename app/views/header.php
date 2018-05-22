@@ -1,6 +1,6 @@
 <header>
 	<div id="container">
-		<div id="center"><h1>Labyrinth Hero</h1></div>
+		<div id="center"><img src="/labyrinth-hero/public/image/logo_lab.png" alt="labyrinth-hero image"></div>
 		<div id="right"><?php 
 		if ((isset($_SESSION['username']) != '')) 
 		{

@@ -8,8 +8,20 @@ class Api extends Controller
 		echo("api index");
 	}
 
-	public function savescore($level = 0, $score = 0)
+	public function savescore()
 	{
+		$level=0;
+		$score;
+		$time;
+		$coins;
+		if(!empty($_POST))
+		{
+			$level = $_POST['lvl'];
+			$score = $_POST['score'];
+			$time = $_POST['sec'];
+			$coins = $_POST['coins'];
+
+		}
 		if($level == 0)
 		{
 			echo("no level specified");
@@ -87,13 +99,15 @@ class Api extends Controller
 		
 	}
 
-	public function getLevel($levelname = 0)
+	public function getlevel($levelname = 1)
 	{
-		$level->levelname = 0;
-		$level->width = 0;
-		$level->height = 0;
-		$level->pickaxe = false ;
-		$level->bomb = false ;
+		$level = $this->model('Level') ;
+
+		$level->levelname = 1;
+		$level->width = 8;
+		$level->height = 5;
+		$level->pickaxe = true ;
+		$level->bomb = true ;
 
 		$myJSON = json_encode($level);
 
