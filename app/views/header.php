@@ -18,6 +18,7 @@
 	<nav class = "menu">
 		<a href="/labyrinth-hero/public/home">Home</a>	
 		<a href="/labyrinth-hero/public/play">Play</a>
-		<a href="/labyrinth-hero/public/leaderboard">Leaderboard</a>		
+		<a href="/labyrinth-hero/public/leaderboard">Leaderboard</a>
+		<a href="/labyrinth-hero/public/about">About</a>		
 	</nav>
 </header>

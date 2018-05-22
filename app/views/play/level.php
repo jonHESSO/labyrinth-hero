@@ -9,7 +9,7 @@
 		include '../app/views/header.php';
 	?>
 	<main>
-		<p>Try to beat this complex level</p>
+		<p>Try to beat this complex level : <?php echo($data['level']); ?></p>
 	</main>	
 	<?php
 		include '../app/views/footer.php';

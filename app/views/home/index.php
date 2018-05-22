@@ -12,7 +12,7 @@
 	<main>
 		<div class="flex-container">
 			<div><img src="/labyrinth-hero/public/image/rabbit_colored.png" alt="Rabbit image" width="100%"></div>
-			<div><p>Arriverez-vous a trouver la sortie? Serez-vous un veritable aventurier?</p> <p>Personnellement, je n'y crois pas... a vous de me prouver le contraire!</p></div>
+			<div><p>Can you find your way out? Are you a real adventurer?</p> <p>Personally, I don't believe it... it's up to you to prove me wrong!</p></div>
 		</div>
 	</main>
 	<?php

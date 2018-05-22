@@ -7,7 +7,8 @@ class Play extends Controller
 
 		if ((isset($_SESSION['username']) != '')) 
 		{
-			$this->view('play/index');
+			$highestlevel = $_SESSION['highestlevel'];
+			$this->view('play/index', ['highestlevel'=>$highestlevel]);
 		}
 		else
 		{
@@ -16,15 +17,25 @@ class Play extends Controller
 
 	}
 
-	public function level($level = 0)
+	public function level()
 	{
 		if ((isset($_SESSION['username']) != '')) 
 		{
-			$this->view('play/level', ['level' => $level]) ;
+			if(isset($_POST['level']))
+			{
+				$this->view('play/level', ['level' => $_POST['level']]) ;
+			}
+
 		}
 		else
 		{
 			header('location: /labyrinth-hero/public/login') ;
+			return;
 		}
+		if(isset($_POST['level']))
+		{
+
+		}
+
 	}
 }

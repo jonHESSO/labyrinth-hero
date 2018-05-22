@@ -21,7 +21,17 @@ class Leaderboard extends Controller
 				
 				if($key == 'username')
 				{
-					$score->username = $value ;
+					$username = $value ;
+					$score->username = $username ;
+					$score->country = '00';
+					$countryquery = "select country from users where username = '$username'";
+					$resultcountry = mysqli_query($db,$countryquery) ;
+					$rowcountry=mysqli_fetch_array($resultcountry,MYSQLI_ASSOC);
+
+					if(mysqli_num_rows($resultcountry) == 1)
+					{
+						$score->country = $rowcountry['country'];
+					}
 				}
 				elseif (!is_null($value))
 				{

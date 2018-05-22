@@ -26,7 +26,7 @@ class Login extends Controller
 				$username = mysqli_real_escape_string($db, $username);
 				$password = mysqli_real_escape_string($db, $password); 
 
-				$query = "Select username from users ".
+				$query = "Select * from users ".
 				"where username = '$username' and password = '$password'";
 
 				$result = mysqli_query($db,$query);
@@ -39,7 +39,9 @@ class Login extends Controller
 				if(mysqli_num_rows($result) == 1)
 				{
 					$login_user = $row['username'];
+					$highestlevel = $row['highestlevel'];
 					$_SESSION['username'] = $login_user; // Initializing Session
+					$_SESSION['highestlevel'] = $highestlevel;
 					header('Location: /labyrinth-hero/public/play');
 				}
 				else
@@ -84,8 +86,10 @@ class Login extends Controller
 				$password = mysqli_real_escape_string($db, $password); 
 				$country = mysqli_real_escape_string($db, $country);
 
-				$query = "Insert into users (username, password, country)".
-				"values('$username','$password','$country')";
+				$highestlevel = 0;
+
+				$query = "Insert into users (username, password, country, highestlevel)".
+				"values('$username','$password','$country', '$highestlevel')";
 
 				$result = mysqli_query($db, $query);
 

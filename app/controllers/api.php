@@ -102,15 +102,37 @@ class Api extends Controller
 	public function getlevel($levelname = 1)
 	{
 		$level = $this->model('Level') ;
+		global $db ;
 
-		$level->levelname = 1;
-		$level->width = 8;
-		$level->height = 5;
-		$level->pickaxe = true ;
-		$level->bomb = true ;
+		$query = "Select * from levels where level = '$levelname'";
+
+		$result = mysqli_query($db,$query) ;
+
+
+		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+
+
+		if(mysqli_num_rows($result) == 1)
+		{
+			$level->levelname = $row['level'];
+			$level->width = $row['width'];
+			$level->height = $row['height'];
+			$level->pickaxe = $row['pickaxe'];
+			$level->bomb = $row['bomb'] ;
+		}
+		else
+		{
+			$level->levelname = 0;
+			$level->width = 0;
+			$level->height = 0;
+			$level->pickaxe = 0;
+			$level->bomb = 0;
+		}
 
 		$myJSON = json_encode($level);
+		echo $myJSON;	
 
-		echo $myJSON;
+		
 	}
 }
