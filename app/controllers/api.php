@@ -10,6 +10,7 @@ class Api extends Controller
 
 	public function savescore()
 	{
+		echo("test");
 		$level=0;
 		$score;
 		$time;
@@ -17,9 +18,12 @@ class Api extends Controller
 		if(!empty($_POST))
 		{
 			$level = $_POST['lvl'];
-			$score = $_POST['score'];
 			$time = $_POST['sec'];
 			$coins = $_POST['coins'];
+
+			$score = 100 - $time ;
+
+			echo($score);
 
 		}
 		if($level == 0)
@@ -46,6 +50,8 @@ class Api extends Controller
 			}
 
 			$query = "Select * from scores where username = '$username'";
+
+
 
 			$result = mysqli_query($db,$query) ;
 
@@ -78,11 +84,14 @@ class Api extends Controller
 			}
 			else
 			{
-				$sql = "Insert into scores (username, $levelname)".
+				$sql1 = "Insert into scores (username, $levelname)".
 				"values('$username',$score)";
-				$sqlresult = mysqli_query($db, $sql);
-				if($sqlresult==true)
+				$sql2 = "Update users set highestlevel = highestlevel+1 where username = '$username'";
+				$sqlresult1 = mysqli_query($db, $sql1);
+				$sqlresult2 = mysqli_query($db, $sql2);
+				if($sqlresult1==true&&$sqlresult2==true)
 				{
+					$_SESSION['highestlevel']=$level;
 					echo("score saved");
 				}
 				else
@@ -90,6 +99,14 @@ class Api extends Controller
 					echo("error inserting score".mysqli_error($db));
 				}
 
+			}
+
+			$hlquery = "Select highestlevel from users where username = '$username'";
+			$hlresult = mysqli_query($db, $hlquery);
+
+			if(mysqli_num_rows($hlresult) == 1)
+			{
+				$highestlevel = 
 			}
 		}
 		else

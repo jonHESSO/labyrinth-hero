@@ -96,6 +96,7 @@ class Login extends Controller
 				if($result==true)
 				{
 					$_SESSION['username'] = $username ;
+					$_SESSION['highestlevel'] = $highestlevel ;
 					header('Location: /labyrinth-hero/public/play');
 				}
 				else

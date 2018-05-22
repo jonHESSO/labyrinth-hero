@@ -89,7 +89,7 @@ input:-webkit-autofill {
 
     -webkit-box-shadow: 0 0 0 2em white inset;
 }
-input[type=text], input[type=password]{
+input[type=text], input[type=password], input[type=email]{
 	font-family: "GoldenAge", "Arial";
 	height: 20px;
 	border: 2px solid darkorange;
@@ -223,3 +223,120 @@ footer
 
 ::-moz-selection { background: darkorange; color: white;}
 ::selection { background: darkorange; color: white;}
+
+
+/*CSS pour le jeu  */
+
+#canvas-container {
+    width: 100%;
+    text-align:center;
+}
+
+canvas {
+    display: inline;
+}
+
+canvas
+{
+  // background: black;
+    margin: 20px auto;
+    display: block;
+}
+
+.wrapper
+{
+    margin: 0 auto;
+    width: 1200px;
+    background: lightgray;
+}
+
+/* La barre commence ici ! */
+/* La barre commence ici ! */
+/* La barre commence ici ! */
+/* La barre commence ici ! */
+
+.bar
+{
+	font-family: sans-serif;
+    margin: 0 auto;
+    padding: 10px;
+    background: url('images/bartex.png');
+    width: 700px;
+    border: 1px outset rgba(64, 32, 0, 0.5);
+}
+
+.bar:after
+{
+    content: '';
+    display: block;
+    clear: both;
+    width: 0;
+    height: 0;
+}
+
+.bonus
+{
+    margin: 0;
+    padding: 0;
+}
+
+.bonus > li
+{
+    position: relative;
+    display: inline-block;
+    list-style: none;
+    background: rgba(255,255,255, 0.4);
+    border: 1px outset #642;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+
+.bonus > li > .infobox
+{
+    font-size: 0.6em;
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    margin: -10px 0 0 -10px;
+    width: 100px;
+    border: 1px solid white;
+    background: #420;
+    color: white;
+    padding: 2px;
+    display: none;
+}
+
+.bonus > li:hover > .infobox
+{
+    display: block;
+    z-index: 1;
+}
+
+.bonus > li > img
+{
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+}
+
+.chrono:before
+{
+    font-size: 0.8em;
+    content: 'Time';
+    display: block;
+}
+.chrono
+{
+    display: inline-block;
+    font-size: 1.8em;
+    font-family: monospace;
+    color: #642;
+    text-shadow: 1px 1px 0 rgba(255, 250, 240, 1.0);
+}
+
+.coin   {
+
+    margin-right: 15px;
+    display : inline-block;
+}

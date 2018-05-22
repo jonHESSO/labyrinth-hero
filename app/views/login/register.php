@@ -15,12 +15,16 @@
 		<div class="loginBox">
 			<form method="post" action="">
 				<label>Username:</label><br>
-				<input type="text" name="username" placeholder="username" /><br/>
+				<input type="text" name="username" placeholder="username" required/><br/>
+				<label>Email:</label><br>
+				<input type="email" name="email" placeholder="email" required/><br/>
 				<label>Password:</label><br>
 				<input type="password" name="password" placeholder="password" /><br/>
-				<input type="hidden" name="country" value="00" />
+				<font size="4">Country: <div id="coutryCode">Unknown</div></font>
+				<input type="hidden" name="country" value="00" /> <br/>
 				<input type="submit" name="submit" value="Register" /> <br/>
 			</form>
+			<br/>
 			<div class="error"><?php echo $data['error'];?></div>
 		</div>
 </div>
@@ -55,6 +59,7 @@
 				{
 					codePays = data.country_code;
 					$("input[name='country']").val(codePays); 
+					document.getElementById("coutryCode").innerHTML = codePays;
 				});
 			}
 		});
