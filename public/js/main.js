@@ -519,7 +519,7 @@ var bunnyX, bunnyY; //X & Y values of the bunny
 var bunnyR, bunnyC; //row and column of the bunny
 
 var exitX, exitY, entryX, entryY;  //X & Y values of the exit and entry
-var exitC, exitR; //row and column of the exit and entry
+var exitC, exitR, entryC, entryR; //row and column of the exit and entry
 
 var bunnyDirection = 38; //Default bunny direction (up)
 
@@ -540,6 +540,19 @@ var seconds = 0;
 function init() {
     browseMaze(); //Browse the maze
     getSprites(); //Get the sprites
+    checkEntry(); //Check where is the entry
+
+}
+
+//Function that check
+function checkEntry()
+{
+    if(entryC == 1)
+        entree.src = "images/entry_left.png";
+
+    else if(Math.floor(entryC/2) == w)
+        entree.src = "images/entry_right.png";
+
 
 }
 
@@ -551,19 +564,21 @@ function browseMaze() {
 
             switch (maze[y][x].type) {
                 case 3: // entry & bunny
-                entryX = 24 * x;
-                entryY = 24 * y;
-                bunnyX = entryX;
-                bunnyY = entryY;
-                bunnyR = y;
-                bunnyC = x;
-                break;
+                    entryX = 24 * x;
+                    entryC = x;
+                    entryY = 24 * y;
+                    entryR = y;
+                    bunnyX = entryX;
+                    bunnyY = entryY;
+                    bunnyR = y;
+                    bunnyC = x;
+                    break;
                 case 4: // exit
-                exitX = 24 * x;
-                exitC = x;
-                exitY = 24 * y;
-                exitR = y;
-                break;
+                    exitX = 24 * x;
+                    exitC = x;
+                    exitY = 24 * y;
+                    exitR = y;
+                    break;
             }
         }
     }
@@ -893,10 +908,10 @@ function drawMaze() {
                 ctx.drawImage(murIndestructible, x * 24, y * 24, 24, 24);
                 break;
                 case 3: //Entry
-                ctx.drawImage(frontiere, x * 24, y * 24, 24, 24);
+                ctx.drawImage(entree, x * 24, y * 24, 24, 24);
                 break;
                 case 4: //Exit
-                ctx.drawImage(frontiere, x * 24, y * 24, 24, 24);
+                ctx.drawImage(sortie, x * 24, y * 24, 24, 24);
                 break;
             }
         }
