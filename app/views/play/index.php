@@ -27,7 +27,7 @@
 			
 			$contentstring = '<form method="post" action="/labyrinth-hero/public/play/level" style="display:inline-block">'.
 			'<input type="hidden" name="level" value="'.$i.'">'.
-			'<button type="submit" name="submit_param" value="submit_value" class="link-button"'.$disabled.'>'.
+			'<button type="submit" name="submit_param" value="submit_value" class="levelbutton"'.$disabled.'>'.
 			'Level<br/>'.$i.
 			'</button>'.
 			'</form>'."\n";

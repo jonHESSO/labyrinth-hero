@@ -55,7 +55,7 @@ tr:nth-child(1){
 }
 
 /*Level page*/
-button{
+.levelbutton{
 	font-family: "GoldenAge", "Arial";
 	margin: 30px;
 	display: inline-block;
@@ -73,14 +73,14 @@ button{
 	box-shadow: 0 9px #999;
 }
 
-button:hover {background-color: #CD853F}
+.levelbutton:hover {background-color: #CD853F}
 
-button:active {
+.levelbutton:active {
   background-color: #CD853F;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-button[disabled=true]{
+.levelbutton[disabled=true]{
 	background-color: black;
 	color: grey;
 }

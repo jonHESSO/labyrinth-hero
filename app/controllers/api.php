@@ -149,8 +149,8 @@ class Api extends Controller
 			$level->levelname = $row['level'];
 			$level->width = $row['width'];
 			$level->height = $row['height'];
-			$level->pickaxe = $row['pickaxe'];
-			$level->bomb = $row['bomb'] ;
+			$level->pickaxe = boolval($row['pickaxe']);
+			$level->bomb = boolval($row['bomb']) ;
 		}
 		else
 		{

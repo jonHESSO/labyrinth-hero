@@ -37,7 +37,9 @@
 			<ul class="bonus" id="bonus">
 			</ul>
 
+
 		</div>
+		<input type="button" id="btnToggleMusic" src="/labyrinth-hero/public/image/audio.png"/>
 
 		<audio id="gameMusic">
 			<source src="/labyrinth-hero/public/audio/music.ogg" type="audio/ogg; codecs=vorbis"/>
