@@ -548,10 +548,10 @@ function init() {
 function checkEntry()
 {
     if(entryC == 1)
-        entree.src = "images/entry_left.png";
+        entree.src = "/labyrinth-hero/public/image/entry_left.png";
 
     else if(Math.floor(entryC/2) == w)
-        entree.src = "images/entry_right.png";
+        entree.src = "/labyrinth-hero/public/image/entry_right.png";
 
 
 }
@@ -603,7 +603,7 @@ sol.src = "/labyrinth-hero/public/image/sand.png";
 mur.src = "/labyrinth-hero/public/image/brick.png";
 murIndestructible.src = "/labyrinth-hero/public/image/indestructible.png";
 entree.src = "/labyrinth-hero/public/image/entree.png";
-sortie.src = "/labyrinth-hero/public/image/sortie.png";
+sortie.src = "/labyrinth-hero/public/image/exit.png";
 pickaxe.src = "/labyrinth-hero/public/image/objects/pickaxe.png";
 bulb.src = "/labyrinth-hero/public/image/objects/bulb.png";
 bomb.src = "/labyrinth-hero/public/image/objects/bomb.png";

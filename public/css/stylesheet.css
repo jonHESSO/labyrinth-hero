@@ -260,7 +260,7 @@ canvas
 	font-family: sans-serif;
     margin: 0 auto;
     padding: 10px;
-    background: url('images/bartex.png');
+    background: url('/labyrinth-hero/public/image/bartex.png');
     width: 700px;
     border: 1px outset rgba(64, 32, 0, 0.5);
 }
