@@ -84,14 +84,11 @@ class Api extends Controller
 			}
 			else
 			{
-				$sql1 = "Insert into scores (username, $levelname)".
+				$sql = "Insert into scores (username, $levelname)".
 				"values('$username',$score)";
-				$sql2 = "Update users set highestlevel = highestlevel+1 where username = '$username'";
-				$sqlresult1 = mysqli_query($db, $sql1);
-				$sqlresult2 = mysqli_query($db, $sql2);
-				if($sqlresult1==true&&$sqlresult2==true)
+				$sqlresult = mysqli_query($db, $sql);
+				if($sqlresult==true)
 				{
-					$_SESSION['highestlevel']=$level;
 					echo("score saved");
 				}
 				else
@@ -103,10 +100,27 @@ class Api extends Controller
 
 			$hlquery = "Select highestlevel from users where username = '$username'";
 			$hlresult = mysqli_query($db, $hlquery);
+			$hlrow=mysqli_fetch_array($hlresult,MYSQLI_ASSOC);
 
 			if(mysqli_num_rows($hlresult) == 1)
 			{
-				$highestlevel = 
+				$highestlevel = $hlrow['highestlevel'];
+				if($level > $highestlevel)
+				{
+					$updatequery = "Update users set highestlevel = '$level' where username = '$username'";
+					$updateresult= mysqli_query($db, $updatequery);
+					if($updateresult==true)
+					{
+						echo('highest level updated');
+						$_SESSION['highestlevel']=$level;
+					}
+					else
+					{
+						echo('error updating highest level');
+					}
+									
+				}
+
 			}
 		}
 		else
