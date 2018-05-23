@@ -529,6 +529,8 @@ var startChrono = false;
 var explosion = false;
 var cptSprite = 0;
 var pickAxeAvailable = false;
+var bombAvailable = false;
+
 
 //Player's score variables
 var coinsPicked = 0;
@@ -829,6 +831,7 @@ var explodeY = 0, explodeX = 0;
 
 //Function that draws the explosion of the bomb
 function drawExplosion() {
+
     if (cptExplosion == 10) {
         GameMusic.playSound("bomb"); //Plays the sound from the 10 iterations
     }
@@ -844,10 +847,11 @@ function drawExplosion() {
     {
         explodeBomb(maze, explodeX, explodeY); //destroy the adjacent cases
     }
-    if (cptExplosion == 110) //when the counter == 110
+    if (cptExplosion == 109) //when the counter == 109
     {
         explosion = false; //set the explosion to false (=> stop the explosion)
-
+        cptExplosion = 0;
+        cptSpriteExplosion = 0;
     }
 
 }
@@ -938,64 +942,83 @@ function drawBunny() {
 
 }
 
-//Called when a key of the keyboard is pressed
-window.onkeydown = function (ev) {
 
-    cptSprite++; //Increase the sprite counter
+//Flag variable to know when a key has been pressed
+var fired = false;
 
-    if (cptSprite == 3)
-        cptSprite = 0; //reset the counter to 0
+//Set the flag variable fired to false when the key is released
+window.onkeyup = function()
+{
+    fired = false;
+};
 
-    if (ev.keyCode == 37 || ev.keyCode == 65) //Key "a" or left
-    {
-        bunnyDirection = 37; //set the bunny direction
+//Called when a key of the keyboard is released
+window.onkeypress = function (ev) {
 
-        if (maze[bunnyR][bunnyC - 1].walkable) { //Check that the left cell is walkable
-            bunnyC--; //update the position of the bunny
-            bunnyX -= 24;
+    if(!fired) { //Check the flag variable to fire the event only once
+
+        cptSprite++; //Increase the sprite counter
+
+        if (cptSprite == 3)
+            cptSprite = 0; //reset the counter to 0
+
+        fired = true; //set the value of the flag variable fired to true
+
+        switch (ev.keyCode) //Check which key has been pressed
+        {
+            case 97: //Key "a"
+                bunnyDirection = 37; //set the bunny direction
+
+                if (maze[bunnyR][bunnyC - 1].walkable) { //Check that the left cell is walkable
+                    bunnyC--; //update the position of the bunny
+                    bunnyX -= 24;
+                }
+                break;
+
+            case 100: //Key "d"
+                bunnyDirection = 39; //set the bunny direction
+
+                if (maze[bunnyR][bunnyC + 1].walkable) { //Check that the right cell is walkable
+                    bunnyC++; //update the position of the bunny
+                    bunnyX += 24;
+                }
+                break;
+            case 119: //Key "w"
+                bunnyDirection = 38; //set the bunny direction
+
+                if (maze[bunnyR - 1][bunnyC].walkable) { //Check that the down cell is walkable
+                    bunnyR--; //update the position of the bunny
+                    bunnyY -= 24;
+                }
+                break;
+
+            case 115: //Key "s"
+                bunnyDirection = 40; //set the bunny direction
+
+                if (maze[bunnyR + 1][bunnyC].walkable) { //Check that the down cell is walkable
+                    bunnyY += 24; //update the position of the bunny
+                    bunnyR++;
+                }
+                break;
+
+            case 112: //Key "p"
+                if(pickAxeAvailable)
+                    cassBrick();
+                break;
+
+            case 98: //"Key "b"
+                if(bombAvailable) {
+                    adaptCell(bunnyY, bunnyX);
+                    explosion = true;
+                    bombAvailable = false;
+                    removeBomb();
+                }
+                break;
+
         }
-
-    }
-    else if (ev.keyCode == 39 || ev.keyCode == 68) //Key "d" or right
-    {
-
-        bunnyDirection = 39; //set the bunny direction
-
-        if (maze[bunnyR][bunnyC + 1].walkable) { //Check that the right cell is walkable
-            bunnyC++; //update the position of the bunny
-            bunnyX += 24;
-        }
-
-    }
-
-    else if (ev.keyCode == 38 || ev.keyCode == 87) //Key "w" or up
-    {
-
-        bunnyDirection = 38; //set the bunny direction
-
-        if (maze[bunnyR - 1][bunnyC].walkable) { //Check that the down cell is walkable
-            bunnyR--; //update the position of the bunny
-            bunnyY -= 24;
-        }
-
-    }
-    else if (ev.keyCode == 40 || ev.keyCode == 83) //Key "s" or down
-    {
-        bunnyDirection = 40; //set the bunny direction
-
-        if (maze[bunnyR + 1][bunnyC].walkable) { //Check that the down cell is walkable
-            bunnyY += 24; //update the position of the bunny
-            bunnyR++;
-        }
-    }
-
-    else if (ev.keyCode == 80 && pickAxeAvailable == true) //Key "p" and pick axe available
-    {
-        cassBrick(); //Destroy the brick the bunny faces
-        pickAxeAvailable = false; //set the pick axe availability to false
-
     }
 };
+
 
 //Function that destroy the brick
 function cassBrick() {
@@ -1010,6 +1033,7 @@ function cassBrick() {
             {
                 maze[y][x - 1].type = 0; //set the type to 0
                 maze[y][x - 1].walkable = true; //set the walkable property to true
+                pickAxeAvailable = false; //set the pick axe availability to false
                 removePickAxe(); //remove the pickaxe from the panel
             }
             break;
@@ -1018,6 +1042,7 @@ function cassBrick() {
             if (maze[y][x + 1].type == Tile.WALL) { //Check that the front cell is a wall
                 maze[y][x + 1].type = 0; //set the type to 0
                 maze[y][x + 1].walkable = true; //set the walkable property to true
+                pickAxeAvailable = false; //set the pick axe availability to false
                 removePickAxe(); //remove the pickaxe from the panel
             }
             break;
@@ -1025,6 +1050,7 @@ function cassBrick() {
             if (maze[y - 1][x].type == Tile.WALL) { //Check that the front cell is a wall
                 maze[y - 1][x].type = 0;
                 maze[y - 1][x].walkable = true;
+                pickAxeAvailable = false; //set the pick axe availability to false
                 removePickAxe(); //remove the pickaxe from the panel
             }
             break;
@@ -1032,6 +1058,7 @@ function cassBrick() {
             if (maze[y + 1][x].type == Tile.WALL) { //Check that the front cell is a wall
                 maze[y + 1][x].type = 0; //set the type to 0
                 maze[y + 1][x].walkable = true; //set the walkable property to true
+                pickAxeAvailable = false; //set the pick axe availability to false
                 removePickAxe(); //remove the pickaxe from the panel
             }
             break;
@@ -1045,6 +1072,13 @@ function removePickAxe() {
     var pickaxeImage = document.getElementById("pickaxe");
     pickaxeImage.parentNode.removeChild(pickaxeImage);
 
+}
+
+//Function that remove the bomb to the items panel
+function removeBomb()
+{
+    var bombImage = document.getElementById("bomb");
+    bombImage.parentNode.removeChild(bombImage);
 }
 
 //Variable for the chronometer
