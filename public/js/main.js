@@ -796,6 +796,7 @@ function pickObject() {
             case 3: //The bomb
                 //items.push(bomb); //add the bomb to the items of the player
                 addItem("bomb"); //add the bomb to the items panel
+                bombAvailable = true; //set the availability of the pick axe to true
                 maze[bunnyR][bunnyC].content = 0; //remove the item from the ground
                 break;
 
