@@ -943,81 +943,91 @@ function drawBunny() {
 }
 
 
-//Flag variable to know when a key has been pressed
-var fired = false;
+//Function that put the canvas in the center of the window
+function centerCanvas() {
+    var cnv = document.getElementById("canvas-container");
+    cnv.scrollIntoView();
+}
 
-//Set the flag variable fired to false when the key is released
-window.onkeyup = function()
+//Function that increase the sprites counter
+function increaseSprite()
 {
-    fired = false;
-};
+    cptSprite++; //Increase the sprite counter
 
-//Called when a key of the keyboard is released
-window.onkeypress = function (ev) {
+    if (cptSprite == 3)
+        cptSprite = 0; //reset the counter to 0
 
-    if(!fired) { //Check the flag variable to fire the event only once
+}
 
-        cptSprite++; //Increase the sprite counter
+//Listener called when a key of the keyboard is released
+window.addEventListener("keydown", function(canMove)
+{
+    return function(event) {
+        if (!canMove) return false;
+        canMove = false;
+        setTimeout(function () {
+            canMove = true; }, 75);
 
-        if (cptSprite == 3)
-            cptSprite = 0; //reset the counter to 0
-
-        fired = true; //set the value of the flag variable fired to true
-
-        switch (ev.keyCode) //Check which key has been pressed
+        switch (event.keyCode) //Check which key has been pressed
         {
-            case 97: //Key "a"
+
+            case 65: //Key "a"
                 bunnyDirection = 37; //set the bunny direction
 
                 if (maze[bunnyR][bunnyC - 1].walkable) { //Check that the left cell is walkable
                     bunnyC--; //update the position of the bunny
                     bunnyX -= 24;
+                    increaseSprite();
                 }
-                break;
 
-            case 100: //Key "d"
+                return;
+
+            case 68: //Key "d"
                 bunnyDirection = 39; //set the bunny direction
 
                 if (maze[bunnyR][bunnyC + 1].walkable) { //Check that the right cell is walkable
                     bunnyC++; //update the position of the bunny
                     bunnyX += 24;
+                    increaseSprite();
                 }
-                break;
-            case 119: //Key "w"
+                return;
+            case 87: //Key "w"
                 bunnyDirection = 38; //set the bunny direction
 
                 if (maze[bunnyR - 1][bunnyC].walkable) { //Check that the down cell is walkable
                     bunnyR--; //update the position of the bunny
                     bunnyY -= 24;
+                    increaseSprite();
                 }
-                break;
+                return;
 
-            case 115: //Key "s"
+            case 83: //Key "s"
                 bunnyDirection = 40; //set the bunny direction
 
                 if (maze[bunnyR + 1][bunnyC].walkable) { //Check that the down cell is walkable
                     bunnyY += 24; //update the position of the bunny
                     bunnyR++;
+                    increaseSprite();
                 }
-                break;
+                return;
 
-            case 112: //Key "p"
-                if(pickAxeAvailable)
+            case 80: //Key "p"
+                if (pickAxeAvailable)
                     cassBrick();
-                break;
+                return;
 
-            case 98: //"Key "b"
-                if(bombAvailable) {
+            case 66: //"Key "b"
+                if (bombAvailable) {
                     adaptCell(bunnyY, bunnyX);
                     explosion = true;
                     bombAvailable = false;
                     removeBomb();
                 }
-                break;
+                return;
 
         }
-    }
-};
+    };
+}(true),false);
 
 
 //Function that destroy the brick
@@ -1315,6 +1325,8 @@ function newGame(callback) {
         startChrono = true; //set the chrono to started
         chronoStart(); //start the chronometer
     }
+
+    centerCanvas();
 
     window.onload = loop();
 }
