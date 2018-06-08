@@ -5,12 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="/labyrinth-hero/public/css/stylesheet.css"></link>
 </head>
 <body>
-	<script type="text/javascript">var currentLevel = <?php echo($data['level']) ?> </script>
+	<script type="text/javascript">
+		var currentLevel = <?php echo($data['level']) ?> ;
+		var lastlevel = <?php echo(($data['level'] == 20 ? 'true' : 'false')) ?>; 
+	</script>
 	<?php
 	include '../app/views/header.php';
 	?>
 	<main>
-		<p>Try to beat this complex level : <?php echo($data['level']); ?></p>
 		<div id="canvas-container" ondrop="drop(event)" ondragover="allowDrop(event)">
 			<canvas></canvas>
 		</div>
@@ -31,6 +33,12 @@
 				<div class="chrono" id="chrono">
 					00:00.000
 				</div>
+				<div class="control" id="music">
+					<button id="btnToggleMusic" class="controlButton"><img src="/labyrinth-hero/public/image/audio.png"/></button>
+				</div>
+				<div class="control" id="controls">
+					<button id="btnControls" class="controlButton" onclick="showControls();"><img src="/labyrinth-hero/public/image/controller.png"/></button>
+				</div>
 
 			</div>
 
@@ -39,7 +47,6 @@
 
 
 		</div>
-		<button id="btnToggleMusic"><img src="/labyrinth-hero/public/image/audio.png"/></button>
 
 		<audio id="gameMusic">
 			<source src="/labyrinth-hero/public/audio/music.ogg" type="audio/ogg; codecs=vorbis"/>

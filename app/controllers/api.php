@@ -10,7 +10,6 @@ class Api extends Controller
 
 	public function savescore()
 	{
-		echo("test");
 		$level=0;
 		$score;
 		$time;
@@ -21,9 +20,26 @@ class Api extends Controller
 			$time = $_POST['sec'];
 			$coins = $_POST['coins'];
 
-			$score = 100 - $time ;
+			global $db ;
 
-			echo($score);
+			$query = "Select * from levels where level = '$level'";
+
+			$result = mysqli_query($db,$query) ;
+
+
+			$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+			$width=0;
+			$height=0;
+
+			if(mysqli_num_rows($result) == 1)
+			{
+				$width = $row['width'];
+				$height = $row['height'];
+			}
+
+			$score = ($width*$height) + ($coins*100) - $time ;
+
 
 		}
 		if($level == 0)
@@ -118,7 +134,7 @@ class Api extends Controller
 					{
 						echo('error updating highest level');
 					}
-									
+
 				}
 
 			}

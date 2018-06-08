@@ -106,7 +106,9 @@
 				<a href="/labyrinth-hero/public/play">Play</a>
 				<a href="/labyrinth-hero/public/leaderboard">Leaderboard</a>
 				<a href="/labyrinth-hero/public/about">About</a>
-				<select class="prefBarColor" style="float:right"></select>		
+				<select class="prefBarColor"></select>
+				<i>Change menu color </i>
+
 			</nav>
 
 

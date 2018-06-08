@@ -536,6 +536,7 @@ var bombAvailable = false;
 var coinsPicked = 0;
 var level = currentLevel;
 var seconds = 0;
+var islastlevel = lastlevel;
 
 
 //Init function
@@ -566,21 +567,21 @@ function browseMaze() {
 
             switch (maze[y][x].type) {
                 case 3: // entry & bunny
-                    entryX = 24 * x;
-                    entryC = x;
-                    entryY = 24 * y;
-                    entryR = y;
-                    bunnyX = entryX;
-                    bunnyY = entryY;
-                    bunnyR = y;
-                    bunnyC = x;
-                    break;
+                entryX = 24 * x;
+                entryC = x;
+                entryY = 24 * y;
+                entryR = y;
+                bunnyX = entryX;
+                bunnyY = entryY;
+                bunnyR = y;
+                bunnyC = x;
+                break;
                 case 4: // exit
-                    exitX = 24 * x;
-                    exitC = x;
-                    exitY = 24 * y;
-                    exitR = y;
-                    break;
+                exitX = 24 * x;
+                exitC = x;
+                exitY = 24 * y;
+                exitR = y;
+                break;
             }
         }
     }
@@ -742,25 +743,54 @@ function loop() {
 
     else //If the game is over
     {
+        //Send the score to the player
+        sendScore();
+
         //Display an alert
-        swal({
-            title: "You won!",
-            text: "Good job!",
-            icon: "success",
-            buttons: [
-            'Go back to the level page',
-            'Go to the next level'
-            ],
-        }).then(function(isConfirm) {
-            if (isConfirm) {
-                newGame();
-                return;
-            } else {
-                window.location.href = "/labyrinth-hero/public/play";
-            }
-        });
-        sendScore();  //Send the score to the player
-        level++;
+        if(level!=20){
+            swal({
+                title: "You won!",
+                text: "Good job!",
+                icon: "success",
+                buttons: [
+                'Go back to the level page',
+                'Go to the next level'
+                ],
+            }).then(function(isConfirm) {
+                if (isConfirm) {
+                    level++;
+                    window.history.replaceState({levelid: level},'Level '+level,level);
+                    window.document.title = 'Play level '+level;
+                    newGame();
+                    return;
+                }
+                
+                else {
+                    window.location.href = "/labyrinth-hero/public/play";
+                }
+            });
+        }
+        else
+        {
+            swal({
+                title: "You won!",
+                text: "Good job! This was the last level",
+                icon: "success",
+                buttons: [
+                'Go back to the level page',
+                'Replay this level'
+                ],
+            }).then(function(isConfirm) {
+                if (isConfirm) {             
+                    newGame();
+                    return;
+                } else {
+                    window.location.href = "/labyrinth-hero/public/play";
+                }
+            });   
+        }
+
+        
     }
 
 
@@ -1013,18 +1043,18 @@ window.addEventListener("keydown", function(canMove)
                 return;
 
             case 80: //Key "p"
-                if (pickAxeAvailable)
-                    cassBrick();
-                return;
+            if (pickAxeAvailable)
+                cassBrick();
+            return;
 
             case 66: //"Key "b"
-                if (bombAvailable) {
-                    adaptCell(bunnyY, bunnyX);
-                    explosion = true;
-                    bombAvailable = false;
-                    removeBomb();
-                }
-                return;
+            if (bombAvailable) {
+                adaptCell(bunnyY, bunnyX);
+                explosion = true;
+                bombAvailable = false;
+                removeBomb();
+            }
+            return;
 
         }
     };
@@ -1330,6 +1360,14 @@ function newGame(callback) {
     centerCanvas();
 
     window.onload = loop();
+}
+
+function showControls()
+{
+    swal({
+                icon: "/labyrinth-hero/public/image/controls.png",
+                buttons: ['Got it!']
+            });
 }
 
 //jQuery function that initalize the audio when the document is ready
