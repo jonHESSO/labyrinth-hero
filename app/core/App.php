@@ -50,8 +50,4 @@ class App
 		}
 	}
 
-	protected function checkLoginDB($username, $password)
-	{
-		
-	}
 }
